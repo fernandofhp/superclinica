@@ -21,23 +21,23 @@
                 placeholder="Telefone" required="required">
             </div>
             <div class="input-group p-1">
-                <input type="text" class="form-control borda" name="cpf_card_nro" 
+                <input type="text" class="borda form-control" name="cpf_card_nro" 
                 placeholder="CPF ou N° da Carteirinha" required="required">
             </div>
-            <div class="form-group p-1">                 
-            <button type="submit" class="btn btn-success m-auto">
-                <i class="material-icons">save</i>
-                GRAVAR
-            </button>
-            <button type="reset" class="btn btn-warning m-auto">    
-                <i class="fas fa-refresh"></i>            
-                REDEFINIR                    
-            </button>
-            <button type="button" class="btn btn-danger m-auto float-right">    
-                <i class="material-icons">cancel</i>            
-                CANCELAR                    
-            </button>
-        </div>
+            <div class="btn-group p-1 w-100">                 
+                <button type="submit" class=" btn btn-success borda">
+                    <i class="material-icons">save</i>
+                    GRAVAR
+                </button>
+                <button type="reset" class="btn btn-warning borda">    
+                    <i class="material-icons">refresh</i>            
+                    REDEFINIR                    
+                </button>
+                <button type="button" class="btn btn-danger borda float-right">    
+                    <i class="material-icons">cancel</i>            
+                    CANCELAR                    
+                </button>
+            </div>
         </form>
         <hr>
     </div>

@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
+//Auth::routes();
+//Route::get('/', 'HomeController@index')->name('home');
 
 // ROTAS DE PACIENTE
 Route::get('/pacientes', 'controle_paciente@index');
@@ -38,6 +38,8 @@ Route::get('modelo', 'Homecontroller@modelo');
 
 // ROTAS DE USUARIOS
 Route::get('/usuarios', 'controle_usuario@index');
-Route::get('/acessar', 'controle_usuario@acessar');
+Route::get('/', 'controle_usuario@acessar');
 // ROTAS DE AGENDA
 Route::get('/agenda', 'controle_agenda@index');
+Route::get('/vagenda', 'controle_agenda@vagenda');
+Route::get('/cadagenda', 'controle_agenda@cadagenda');

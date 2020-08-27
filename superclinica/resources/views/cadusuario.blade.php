@@ -20,20 +20,18 @@
             <div class="input-group p-1">
                 <input type="text" class="form-control borda" name="email" placeholder="e-mail" required="required">
             </div>            
-            <div class="form-group p-1">                 
-                <button type="button" class="btn btn-danger m-auto borda">
-                    <i class="material-icons">chevron_left</i>
-                    VOLTAR
+            <div class="input-group p-1">                 
+                <button type="button" class="form-control btn btn-danger borda">                    
                     <i class="material-icons">cancel</i>
+                    VOLTAR <!-- <i class="material-icons">chevron_left</i> -->                    
                 </button>
-                <button type="reset" class="btn btn-warning m-auto  borda">    
+                <button type="reset" class="form-control btn btn-warning borda">    
                     <i class="material-icons">refresh</i>            
                     REDEFINIR                    
                 </button>
-                <button type="button" class="btn btn-success m-auto  borda">                
+                <button type="button" class="form-control btn btn-success borda">                
                     <i class="material-icons">save</i>
-                    PRÓXIMO
-                    <i class="material-icons">chevron_right</i>
+                    PRÓXIMO <!-- <i class="material-icons">chevron_right</i> -->                    
                 </button>
             </div>
         </form>

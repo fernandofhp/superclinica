@@ -7,25 +7,36 @@
     <link href="/css/all.css" rel="stylesheet" type="text/css" >
     <script src="/js/all.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">    
     @yield('estilos');
     <title>SUPER CLINICA</title>
 </head>
 <body>
     <div class="container estojo p-1 mt-0 mb-1" style="">
-        <div class="jumbotron text-center m-2 p-2">
-            <h1>SUPER CLINICA</h1>
-            <hr>
-            <div class=" text-center" >            
-        
-            @yield('corpo')
-        </div>        
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-        <i class="fas fa-baby"></i>
+        <div class="container">            
+            <div class="jumbotron text-center m-2 p-2">                                   
+                <div class="container col-4">
+                    <div class="row">
+                        <div class="col-sm">
+                            <img src="img/clinica.png" alt="" class="src"> 
+                        </div>
+                        <div class="col-sm">
+                            <h1>SUPER CLÍNICA</h1>
+                        </div>                                             
+                    </div>
+                </div>                  
+                    <hr>
+                <div class="text-center" >        
+                    @yield('corpo')
+                </div>             
+            </div>             
+        </div>                                           
     </div>
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @yield('jscripts')
 </body>
 </html>
