@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    function relMedicos(){
+        return $this->hasMany('App\Models\ModelMedicos', 'id_usuario');        
+    }
+    function relPacientes(){
+        return $this->hasOne('App\Models\ModelPacientes', 'id_usuario');
+    }
 }
