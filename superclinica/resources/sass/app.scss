@@ -1,8 +1,20 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Nunito'); 
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.estojo{
+    background-color: dimgrey;
+    border: black 1px solid;
+}
+.rotulo{
+    background-color: $rotular;
+    border: $negra;
+}
+.borda{   
+    border: $negra;
+}
