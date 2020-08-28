@@ -16,6 +16,8 @@ class semeador_agenda extends Seeder
             'id_medico'=>'1',
             'id_paciente'=>'1',
             'datahora'=>'2020-08-25 09:00',
+            'data'=>'2020-08-25',
+            'hora'=>'09:00',
             'obs'=>'Jejum de 4h',
             'tipo'=>'EXAME'
         ]);
@@ -23,6 +25,8 @@ class semeador_agenda extends Seeder
             'id_medico'=>'1',
             'id_paciente'=>'2',
             'datahora'=>'2020-08-25 10:00',
+            'data'=>'2020-08-25',
+            'hora'=>'10:00',
             'obs'=>'',
             'tipo'=>'CONSULTA'
         ]);
@@ -30,6 +34,8 @@ class semeador_agenda extends Seeder
             'id_medico'=>'1',
             'id_paciente'=>'3',
             'datahora'=>'2020-08-25 12:00',
+            'data'=>'2020-08-25',
+            'hora'=>'12:00',
             'obs'=>'Trazer Acompanahte',
             'tipo'=>'CIRURGIA'
         ]);

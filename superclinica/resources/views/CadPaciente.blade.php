@@ -3,6 +3,7 @@
 <div class="container m-auto col-6">
     <div class="display-6 text-center">CADASTRO DE PACIENTES</div>    
         <form name="formCadPaciente" id="formCadPaciente" method="post" action="{{url('index')}}">
+        @csrf
             <div class="input-group p-1 ">
                 <input type="text" class="form-control borda" name="nome" 
                 placeholder="nome" required="required">

@@ -42,4 +42,5 @@ Route::get('/', 'controle_usuario@acessar');
 // ROTAS DE AGENDA
 Route::get('/agenda', 'controle_agenda@index');
 Route::get('/vagenda', 'controle_agenda@vagenda');
+Route::post('/testagenda', 'controle_agenda@testagenda');
 Route::get('/cadagenda', 'controle_agenda@cadagenda');

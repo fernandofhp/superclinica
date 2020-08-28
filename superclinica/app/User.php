@@ -37,10 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    function relMedicos(){
-        return $this->hasMany('App\Models\ModelMedicos', 'id_usuario');        
+    public function relMedicos(){
+        return $this->hasMany('App\medicos', 'id_usuario');        
     }
-    function relPacientes(){
-        return $this->hasOne('App\Models\ModelPacientes', 'id_usuario');
+    public function relPacientes(){
+        return $this->hasOne('App\pacientes', 'id_usuario');
     }
 }

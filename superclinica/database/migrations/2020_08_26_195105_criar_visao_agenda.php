@@ -17,6 +17,8 @@ class CriarVisaoAgenda extends Migration
             "CREATE OR REPLACE VIEW visao_agenda AS
                 SELECT 
                 GRADE.HORA,
+                COALESCE((SELECT ID FROM AGENDA 
+                WHERE (TIME(AGENDA.DATAHORA) = GRADE.HORA) LIMIT 1 ),'') AS ID,
                 COALESCE((SELECT DATE(DATAHORA) FROM AGENDA 
                 WHERE (TIME(AGENDA.DATAHORA) = GRADE.HORA) LIMIT 1 ),'') AS DATA,
                 COALESCE((SELECT OBS FROM AGENDA WHERE (TIME(AGENDA.DATAHORA) = GRADE.HORA)LIMIT 1 ),'') AS OBS,

@@ -51,6 +51,7 @@
                         
                         <div class="col-lg border border-dark">
                         <form action="agenda/busca" name="formAgenda" id="formAgenda" method="get">
+                        @csrf
                             <input id="calendario" name="calendario" type="date" class="form-control borda">
                             <input type="hidden" name="perfil" id="perfil" value="MEDICO">
                             <input type="hidden" name="hj" id="hj" >

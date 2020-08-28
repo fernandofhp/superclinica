@@ -3,7 +3,8 @@
 <div class="container m-auto">
     <div class="container w-75" >
         <div class="display-4 text-center">CADASTRO DE USUARIOS</div>    
-        <form name="formLogin" id="formLogin" method="post" action="{{url('login')}}">                 
+        <form name="formLogin" id="formLogin" method="post" action="{{url('login')}}"> 
+        @csrf                
             <div class="input-group p-1">
                 <label for="perfil" class="form-control rotulo">PERFIL:</label>
                 <label class="form-control rotulo"></label>            

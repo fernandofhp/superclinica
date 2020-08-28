@@ -3,6 +3,7 @@
 <div class="container m-auto col-6">
     <div class="display-6 text-center">AGENDAR ATENDIMENTO</div> 
     <form name="formCadPaciente" id="formCadPaciente" method="post" action="{{url('index')}}">
+    @csrf
         <div class="input-group p-1 ">
             <label for="" class="form-control rotulo  col-3">Paciente:</label>                
             <label for="" class="form-control rotulo  col-2">ID: </label>                

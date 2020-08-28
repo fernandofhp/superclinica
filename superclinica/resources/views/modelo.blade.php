@@ -26,7 +26,7 @@
                     </div>
                 </div>                  
                     <hr>
-                <div class="text-center" >        
+                <div class="text-center " >        
                     @yield('corpo')
                 </div>             
             </div>             
@@ -35,8 +35,6 @@
     <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @yield('jscripts')
 </body>
 </html>

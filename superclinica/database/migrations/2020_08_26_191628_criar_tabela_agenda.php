@@ -21,6 +21,8 @@ class CriarTabelaAgenda extends Migration
             $table->integer('id_paciente')->unsigned();
             $table->foreign('id_paciente')->references('id')->on('pacientes')->onDelete('cascade')->onUpdate('cascade');
             $table->datetime('datahora')->nullable();            
+            $table->date('data')->nullable();            
+            $table->time('hora')->nullable();            
             $table->string('obs')->nullable(); 
             $table->set('tipo', ['CONSULTA', 'EXAME', 'CIRURGIA']); 
             $table->timestamps();
