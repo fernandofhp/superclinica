@@ -13,7 +13,7 @@ class semeador_pacientes extends Seeder
     public function run(pacientes $paciente)
     {
         $paciente->create([
-            'id_usuario'=>'1',
+            'id_usuario'=>'1000',
             'nome'=>'Sr.José',
             'ender'=>'Rua tal',
             'fone'=>'(16) 98850-4000',
@@ -21,7 +21,7 @@ class semeador_pacientes extends Seeder
             'cpf_card_nro'=>'MAX-001-AP-55721'
         ]);
         $paciente->create([
-            'id_usuario'=>'2',
+            'id_usuario'=>'2000',
             'nome'=>'Dona Clotilde',
             'ender'=>'Rua Severino Barba, 44',
             'fone'=>'(16) 98811-5000',
@@ -29,7 +29,7 @@ class semeador_pacientes extends Seeder
             'cpf_card_nro'=>'MAX-002-AQ-55721'
         ]);
         $paciente->create([
-            'id_usuario'=>'1',
+            'id_usuario'=>'3000',
             'nome'=>'Seu Hernesto',
             'ender'=>'Av. Barbara Vila Boa, 46',
             'fone'=>'(16) 98870-0805',

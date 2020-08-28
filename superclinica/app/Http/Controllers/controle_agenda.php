@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\agenda; // Model  app\visao_agenda.php
 use App\User; // Model  tabela de usuarios
 use App\medicos; // Model  tabela de usuarios
+use App\pacientes; // Model  tabela de usuarios
 //use App\Views\agenda; // Blade
 
 
@@ -16,16 +17,18 @@ class controle_agenda extends Controller{
     private $vis_agenda;
     private $Usuario;
     private $Medicos;
+    private $Paciente;
 
     public function __construct(){
         $this->agenda_ = new agenda; //Modelo = tabela
        // $this->vis_agenda = new visao_agenda; //Modelo = tabela
         $this->Usuario = new User; //Modelo = tabela
         $this->Medicos = new medicos; //Modelo = tabela
+        $this->Pacientes = new pacientes; //Modelo = tabela
     }
 
     public function index() {
-        //
+        return view('agenda');
     }
 
     public function vagenda(){
@@ -35,7 +38,7 @@ class controle_agenda extends Controller{
         return view('cadagenda');
     }
     public function testagenda(Request $request){        
-        $perfil = $request->perfil;
+        $perfil = $request->perfil;  
         $name = $request->name;
         $pass = $request->password;        
         $data = $request->data;        
@@ -44,13 +47,26 @@ class controle_agenda extends Controller{
         //$id_u = $usuario1->first();
 
         $id_u = $usuario1->id;
-        $medico = $this->Medicos->where('id_usuario','=',$id_u)->get()->first();        
-        $id_medico = $medico->id;  
-        $nome = $medico->nome;
-        $vagendas = $this->agenda_;           
+        if ($perfil == 'MEDICO') {
+            $medico = $this->Medicos->where('id_usuario','=',$id_u)->get()->first();        
+            $id_medico = $medico->id;  
+            $nome = $medico->nome;
+            $vagendas = $this->agenda_;           
         
-        $vagendas = $vagendas->where('id_medico',$id_medico); //
-        $vagendas = $vagendas->whereData('2020-08-25')->get();  // $data 
+            $vagendas = $vagendas->where('id_medico',$id_medico); //
+            $vagendas = $vagendas->whereData('2020-08-25')->get();  // $data            
+        }
+
+        if ($perfil == 'PACIENTE') {
+            $paciente = $this->Pacientes->where('id_usuario','=',$id_u)->get()->first();        
+            $id_paciente = $paciente->id;  
+            $nome = $paciente->nome;
+            $vagendas = $this->agenda_;           
+        
+            $vagendas = $vagendas->where('id_paciente',$id_paciente); //
+            $vagendas = $vagendas->whereData('2020-08-25')->get();  // $data            
+        }
+         
         //return dd($vagendas);  
                       
         return view('testagenda', compact('vagendas', 'perfil', 'nome'));

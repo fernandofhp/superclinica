@@ -13,11 +13,11 @@
         </div>
         <div class="input-group p-1">
             <input type="text" class="form-control borda" name="name" placeholder="usuario" 
-            required="required" value="evanilde">
+            required="required" value="Clotilde">
         </div>
         <div class="input-group p-1">
             <input type="password" class="form-control borda" name="password" 
-            placeholder="Senha" required="required" value="eva123">
+            placeholder="Senha" required="required" value="clotil123">
         </div>        
         <div class="form-group p-1">                                 
             <button type="submit" class="form-control btn btn-primary borda">ENTRAR</button>                                 

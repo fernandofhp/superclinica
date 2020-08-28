@@ -36,5 +36,23 @@ class semeador_usuarios extends Seeder
             'email'=>'bibi@fhp.com',
             'password'=>'bibi123'
         ]); 
+        $user->create([
+            'id'=>'1000',
+            'name'=>'Jose',
+            'email'=>'zeh@fhp.com',
+            'password'=>'zezeh123'
+        ]); 
+        $user->create([
+            'id'=>'2000',
+            'name'=>'Clotilde',
+            'email'=>'tildinha@fhp.com',
+            'password'=>'clotil123'
+        ]); 
+        $user->create([
+            'id'=>'3000',
+            'name'=>'Ernesto',
+            'email'=>'nehstu@fhp.com',
+            'password'=>'ernesto123'
+        ]); 
     }
 }
