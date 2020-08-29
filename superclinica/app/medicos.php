@@ -12,4 +12,5 @@ class medicos extends Model
     function relUsers(){
         return $this->hasOne('App\User', 'id', 'id_usuario');
     }
+   
 }

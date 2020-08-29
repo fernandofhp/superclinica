@@ -1,6 +1,6 @@
 @extends('modelo')
 @section('corpo')
-<div class="container m-auto col-6">
+<div class="container m-auto col-12">
     <div class="display-6 text-center">AGENDAR ATENDIMENTO</div> 
     <form name="formCadPaciente" id="formCadPaciente" method="post" action="{{url('index')}}">
     @csrf

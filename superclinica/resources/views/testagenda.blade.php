@@ -24,12 +24,17 @@
        
         @foreach ($vagendas as $value) 
         @php
-           //$hora = /* ($value->hora != '') ? (*/ '2019-08-01 ' . date($value->hora) /* : ('') */;
-           $hora = $value->hora; // date("H:i", strtotime($value->hora));
+           $hora = date("H:i", strtotime($value->hora));
+           $hora = isset($hora) ? ($hora) : ('') ; 
+           if($perfil = 'MEDICO'){
+                $nome = '';
+           } else {
+                $nome = '';
+           }
         @endphp                                           
             <tr class="pt-auto pb-auto">
                 <th scope="row" class='m-1 p-1 text-dark'> {{ $hora }}  </th>
-                <td class='m-1 p-1 text-dark'> {{ ($perfil == 'MEDICO') ?? ($value->id_paciente ?? '') ?? ($value->id_medico ?? '') }} </td>
+                <td class='m-1 p-1 text-dark'> {{ ($nome) ?? ('') }} </td>
                 <td class='m-1 p-1 text-dark'> {{ $value->tipo ?? ''}} </td>
                 <td class='m-1 p-1 text-dark'> {{ $value->obs ?? ''}} </td>
                 <td class='m-1 p-1 text-dark btn-group'>                                           

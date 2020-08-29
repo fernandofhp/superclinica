@@ -12,4 +12,5 @@ class pacientes extends Model
     function relUsers(){
         return $this->hasMany('App\User', 'id', 'id_usuario');
     }
+    
 }
