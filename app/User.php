@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function relMedicos(){
-        return $this->hasMany('App\medicos', 'id_usuario');        
+        return $this->hasOne('App\medicos', 'id_usuario');        
     }
     public function relPacientes(){
         return $this->hasOne('App\pacientes', 'id_usuario');
