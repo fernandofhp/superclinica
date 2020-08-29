@@ -9,7 +9,7 @@
     <?php
         $data = ( isset($data) ) ? ($data) : (date('Y-m-d', time()));
     ?>
-    <input type="date" name="data" id="hj" class="form-control borda" value="{{ $data }}">
+    <input type="date" name="data" id="hj" class="form-control borda" value="{{ $data ?? '2020-08-25' }}">
     <table class="table table-bordered table-striped table-outline-dark min-h-100">
         <thead  class="thead-dark">
             <tr>

@@ -43,25 +43,30 @@ class controle_agenda extends Controller{
             ->where('password', $pass)->first()->id;        
         
         //return $id_u;         
-       
+       $vagendas = $this->agenda_;
         if ($perfil == 'MEDICO') {
-            $medico = $this->Medicos->where('id_usuario','=',$id_u)->first();        
-            $id_medico = $medico->id; 
-            $nome = $medico->nome;
-            $vagendas = $this->agenda_;                 
+            $medico = $this->Medicos->where('id_usuario','=',$id_u)->first();
+            if(empty($medico)){
+                return view('acessar');
+            }
+            //return $medico->id;        
+            $id_medico = $this->Medicos->where('id_usuario','=',$id_u)->first()->id; 
+            $nome = $this->Medicos->where('id_usuario','=',$id_u)->first()->nome;                            
         
             //$vagendas = $vagendas->where('id_medico',$id_medico); //
-            $vagendas = $vagendas->whereData()->get($data);  // 
+            $vagendas = $vagendas->whereData($data)->get();  // 
             //$listPacientes = $vagendas->pacientes; 
             //$listMedicos = [];              
             //$listPacientes = [];              
         }
 
         if ($perfil == 'PACIENTE') {
-            $paciente = $this->Pacientes->where('id_usuario','=',$id_u)->first();                             
+            $paciente = $this->Pacientes->where('id_usuario','=',$id_u)->first();
+            if(empty($paciente)){
+                return view('acessar');
+            }                             
             $id_paciente = $paciente->id;              
-            $nome = $paciente->nome;
-            $vagendas = $this->agenda_;           
+            $nome = $paciente->nome;         
          
             $vagendas = $vagendas->whereIdPaciente($id_paciente); //
             $vagendas = $vagendas->whereData($data)->get();  //  
@@ -69,8 +74,8 @@ class controle_agenda extends Controller{
             //$listMedicos = [];
             //$listPacientes = [];
         }         
-        //return dd($vagendas); // 
+        //return dd($vagendas); // , 'listPacientes', 'listMedicos'
                       
-        return view('testagenda', compact('vagendas', 'perfil', 'nome', 'listPacientes', 'listMedicos'));
+        return view('testagenda', compact('vagendas', 'perfil', 'nome'));
     }
 }

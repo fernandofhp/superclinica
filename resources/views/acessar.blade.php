@@ -22,6 +22,7 @@
         <div class="form-group p-1">                                 
             <button type="submit" class="form-control btn btn-primary borda">ENTRAR</button>                                 
         </div> 
+        <input type="hidden" name="data" id="data" class="form-control borda" value="2020-08-25">
     </form>
     <form name="formLcadUser" id="formLcadUser" method="get" action="usuarios">
         @csrf
