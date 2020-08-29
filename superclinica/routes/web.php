@@ -43,4 +43,6 @@ Route::get('/', 'controle_usuario@acessar');
 Route::get('/agenda', 'controle_agenda@index');
 Route::get('/vagenda', 'controle_agenda@vagenda');
 Route::post('/testagenda', 'controle_agenda@testagenda');
+//Route::post('/testagenda', 'controle_agenda@index');
 Route::get('/cadagenda', 'controle_agenda@cadagenda');
+
