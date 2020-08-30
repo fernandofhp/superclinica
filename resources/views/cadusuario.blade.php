@@ -2,7 +2,7 @@
 @section('corpo')
 <div class="container m-auto">
     <div class="container w-75" >
-        <div class="display-4 text-center">CADASTRO DE USUARIOS</div>  
+        <div class="display-6 text-center">CADASTRO DE USUARIOS</div>  
         <?php
             $pefil = verifica($perfil);
             //$acao = ($perfil == 'MEDICO') ? 'cadmedico': 'cadpaciente';
@@ -16,17 +16,14 @@
                 value="{{ $perfil ?? 'PACIENTE' }}" readonly >           
             </div>
             <div class="input-group p-1">
-                <input type="text" class="form-control borda" name="usuario" placeholder="usuario" 
+                <input type="text" class="form-control borda" name="name" placeholder="usuario" 
                 required="required" value="ze_ruela">
             </div>
             <div class="input-group p-1">
-                <input type="password" class="form-control borda" name="password1" value="ruela" 
+                <input type="password" class="form-control borda" name="password" value="ruela" 
                 placeholder="Senha" required="required">
             </div>
-            <div class="input-group p-1">
-                <input type="password" class="form-control borda" name="password2" value="ruela"
-                placeholder="Repita a senha" required="required">
-            </div>
+          
             <div class="input-group p-1">
                 <input type="text" class="form-control borda" name="email" value="ze@ruela.com.br"
                 placeholder="e-mail" required="required">

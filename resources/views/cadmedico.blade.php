@@ -2,11 +2,12 @@
 @section('corpo')
 <div class="container m-auto col-6">
     <div class="display-6 text-center">CADASTRO DE MÉDICOS</div>    
-        <form name="formCadPaciente" id="formCadPaciente" method="post" action="{{url('index')}}">
+        <form name="formCadMed" id="formCadMed" method="post" action="{{url('medicos')}}">
+        <input type="hidden" name="id_usuario" id="id_usr" value="{{ $id_usuario ?? -1 }}">
         @csrf
             <div class="input-group p-1 ">
-                <input type="text" value='{{$medico->nome ?? ""}}' 
-                class="form-control borda" name="medico" 
+                <input type="text" value='{{ $medico->nome ?? ""}}' 
+                class="form-control borda" name="nome" 
                 placeholder="Nome do Médico" required="required" >
             </div>            
             <div class="input-group p-1">
@@ -26,7 +27,8 @@
                     <i class="material-icons">refresh</i>            
                     REDEFINIR                    
                 </button>
-                <button type="button" class="btn btn-danger borda float-right">    
+                <button type="button" class="btn btn-danger borda float-right" 
+                 onclick="window.history.back()">    
                     <i class="material-icons">cancel</i>            
                     CANCELAR                    
                 </button>
@@ -34,15 +36,4 @@
         </form>        
     </div>
 </div>
-<!--
-<div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="img/minidoc.png" alt="imagem">            
-    <div class="card-body">
-        <h5 class="card-title">Medico</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">OK</a>
-    </div>
-</div>
-<hr> -->
-
 @endsection

@@ -18,7 +18,9 @@
                 <div class="container col-4">
                     <div class="row">
                         <div class="col-sm">
-                            <img src="img/clinica.png" alt="" class="src"> 
+                        <a href="/">
+                            <img src="img/clinica.png" alt="" class="src">
+                        </a>
                         </div>
                         <div class="col-sm">
                             <h1>SUPER CLÍNICA</h1>

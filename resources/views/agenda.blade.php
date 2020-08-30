@@ -33,8 +33,9 @@
        
         @foreach ($vagendas as $value) 
         @php
-           $hora = date("H:i", strtotime($value->hora));
-           $hora = isset($hora) ? ($hora) : ('') ; 
+           
+           $hora = isset($value->hora) ? date("H:i", strtotime($value->hora)) : '';
+           //$hora = isset($hora) ? ($hora) : ('') ; 
            $medico = isset($value->medicos->nome) ? $value->medicos->nome : '';           
            $paciente = isset($value->pacientes->nome) ? $value->pacientes->nome : ''; 
            $nomelist = ($perfil == 'MEDICO') ? $paciente  : $medico;         

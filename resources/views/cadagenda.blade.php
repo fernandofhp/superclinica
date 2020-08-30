@@ -2,21 +2,24 @@
 @section('corpo')
 <div class="container m-auto col-12">
     <div class="display-6 text-center">AGENDAR ATENDIMENTO</div> 
-    <form name="formCadPaciente" id="formCadPaciente" method="post" action="{{url('index')}}">
+    <form name="formCadAgenda" id="formCadAgenda" method="post" action="{{url('agenda')}}">
     @csrf
+        <?php 
+            $pefil = isset($pefil) ? ($pefil) : ('');
+        ?>        
         <div class="input-group p-1 ">
-            <label for="" class="form-control rotulo  col-3">Paciente:</label>                
-            <label for="" class="form-control rotulo  col-2">ID: </label>                
+            <label for="" class="form-control rotulo  col-3"> {{ $perfil }}:</label>                                         
             <label for="" class="form-control rotulo ">Nome: </label>                
         </div>
         <div class="input-group p-1">
             <label for="data" class="form-control rotulo  col-3">Data:</label> 
-            <input type="date" class="form-control borda disabeld" name="data">
+            <input type="date" class="form-control borda " name="data" id="data">
         </div>
         <div class="input-group p-1">
             <label for="hora" class="form-control rotulo  col-3">Hora:</label> 
-            <input type="time" class="form-control borda disabeld col-sm" name="hora">
+            <input type="time" class="form-control borda  col-sm" name="hora"  id="hora">
         </div>
+        <input type="hidden" name="datahora" value="datahora"  id="datahora">
         <div class="input-group p-1">
             <label for="medico" class="form-control rotulo col-3">Médico:</label> 
             <select class="form-control borda" name="medico" required="required">
@@ -40,8 +43,19 @@
             <label for="obs" class="list-group-item rotulo mb-0">Observação:</label>
             <textarea name="obs" id="obs" cols="30" rows="4" class="list-group-item borda mt-0"></textarea>            
         </div> 
-        <div class="btn-group p-1 w-100">                 
-                <button type="submit" class="btn btn-success borda">
+        <div class="btn-group p-1 w-100">  
+            <script>
+                function copia_tempo(){
+                    doc = document;
+                    datahora = doc.getElementById("datahora");
+                    data = doc.getElementById("data");
+                    hora = doc.getElementById("hora");
+                    datahora.value = data.value + 'T' + hora.value;
+                    //doc.getElementById("datahora").submit();
+                }
+            </script>               
+                <button type="button" onclick="copia_tempo();"
+                        class="btn btn-success borda">
                     <i class="material-icons">save</i>
                     GRAVAR
                 </button>
