@@ -17,4 +17,11 @@ class agenda extends Model
     ];
     protected $appends = ['data', 'hora','medico','paciente'];
 
+    public function medicos(){
+        return $this->hasOne('\App\medicos', 'id', 'id_medico');
+    } 
+    public function pacientes(){
+        return $this->hasOne('\App\pacientes', 'id', 'id_paciente');
+    } 
+
 }

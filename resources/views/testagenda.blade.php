@@ -28,15 +28,13 @@
         @php
            $hora = date("H:i", strtotime($value->hora));
            $hora = isset($hora) ? ($hora) : ('') ; 
-           if($perfil = 'MEDICO'){
-                $nome = '';
-           } else {
-                $nome = '';
-           }
+           $medico = isset($value->medicos->nome) ? $value->medicos->nome : '';           
+           $paciente = isset($value->pacientes->nome) ? $value->pacientes->nome : ''; 
+           $nomelist = ($perfil == 'MEDICO') ? $paciente  : $medico;         
         @endphp                                           
             <tr class="pt-auto pb-auto">
                 <th scope="row" class='m-1 p-1 text-dark'> {{ $hora }}  </th>
-                <td class='m-1 p-1 text-dark'> {{ ($nome) ?? ('') }} </td>
+                <td class='m-1 p-1 text-dark'> {{ ($nomelist) ?? ('') }} </td>
                 <td class='m-1 p-1 text-dark'> {{ $value->tipo ?? ''}} </td>
                 <td class='m-1 p-1 text-dark'> {{ $value->obs ?? ''}} </td>
                 <td class='m-1 p-1 text-dark btn-group'>                                           

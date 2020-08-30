@@ -22,16 +22,16 @@ class controle_agenda extends Controller{
         $this->Usuario = new User; //Modelo = tabela
         $this->Medicos = new medicos; //Modelo = tabela
         $this->Pacientes = new pacientes; //Modelo = tabela
-    }
-
-    
+    }   
 
     public function vagenda(){
         return view('visagenda');
     }
+
     public function cadagenda(){
         return view('cadagenda');
     }
+
     public function testagenda(Request $request){ 
                
         $perfil = $request->perfil;  
@@ -53,6 +53,7 @@ class controle_agenda extends Controller{
         //return $id_u;         
        $vagendas = $this->agenda_;
         if ($perfil == 'MEDICO') {
+            //$vagendas = $vagendas->join('pacientes','pacientes.id','id_paciente'); //teste
             $medico = $this->Medicos->where('id_usuario','=',$id_u)->first();
             if(empty($medico)){
                 return view('acessar');
@@ -69,6 +70,7 @@ class controle_agenda extends Controller{
         }
 
         if ($perfil == 'PACIENTE') {
+            //$vagendas = $vagendas->me;  //teste
             $paciente = $this->Pacientes->where('id_usuario','=',$id_u)->first();
             if(empty($paciente)){
                 return view('acessar');
