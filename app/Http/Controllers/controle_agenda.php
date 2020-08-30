@@ -88,4 +88,8 @@ class controle_agenda extends Controller{
                       
         return view('agenda', compact('vagendas', 'perfil', 'nome', 'data', 'name', 'password'));
     }
+
+    public function create(){
+        
+    }
 }

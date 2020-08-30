@@ -37,7 +37,9 @@ Route::get('/medicos/{id}/del', 'controle_medico@del');
 Route::get('modelo', 'Homecontroller@modelo');
 
 // ROTAS DE USUARIOS
-Route::post('/usuarios', 'controle_usuario@index');
+Route::get('/usuarios', 'controle_usuario@index');
+Route::get('/usuarios/create', 'controle_usuario@create');
+Route::post('/usuarios', 'controle_usuario@store');
 Route::get('/', 'controle_usuario@acessar');
 // ROTAS DE AGENDA
 //Route::get('/agenda', 'controle_agenda@index');
