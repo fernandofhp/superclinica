@@ -7,12 +7,12 @@
 
     function verifica($campo, $vazio = ''){
         return (
-            isset($campo) ? (
+            //isset($campo) ? (
                 empty($campo) ? 
                 ($campo) : 
                 ($vazio)
-            ) : 
-            ($vazio)
+            //) : 
+            //($vazio)
         );
     }
 

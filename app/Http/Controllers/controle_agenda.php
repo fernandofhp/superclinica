@@ -36,11 +36,19 @@ class controle_agenda extends Controller{
                
         $perfil = $request->perfil;  
         $name = $request->name;
-        $pass = $request->password;        
-        $data = $request->data;                
-        
-        $id_u =  $this->Usuario->where('name', $name)
-            ->where('password', $pass)->first()->id;        
+        $pass = $request->password;               
+        $data = $request->data;               
+        if ($data) {
+            $data = $data;
+        } else {
+            $data = '2020-08-25';
+        }              
+        $usuario = $this->Usuario->where('name', $name)
+                    ->where('password', $pass)->first();
+        if (empty($usuario)) {
+            return view('acessar');
+        }
+        $id_u =  $usuario->id;        
         
         //return $id_u;         
        $vagendas = $this->agenda_;
@@ -76,6 +84,6 @@ class controle_agenda extends Controller{
         }         
         //return dd($vagendas); // , 'listPacientes', 'listMedicos'
                       
-        return view('testagenda', compact('vagendas', 'perfil', 'nome'));
+        return view('testagenda', compact('vagendas', 'perfil', 'nome', 'data'));
     }
 }

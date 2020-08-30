@@ -6,8 +6,7 @@
     @csrf
         <div class="input-group p-1 ">            
             <label for="perfil" class="form-control rotulo col-sm-3 ">PERFIL:</label>
-            <select name="perfil" id="perfil" class="form-control borda">
-                
+            <select name="perfil" id="perfil" class="form-control borda">                
                 <option value="PACIENTE">PACIENTE</option><option value="MEDICO">MEDICO</option>
            </select>            
         </div>
@@ -21,8 +20,7 @@
         </div>        
         <div class="form-group p-1">                                 
             <button type="submit" class="form-control btn btn-primary borda">ENTRAR</button>                                 
-        </div> 
-        <input type="hidden" name="data" id="data" class="form-control borda" value="2020-08-25">
+        </div>         
     </form>
     <form name="formLcadUser" id="formLcadUser" method="get" action="usuarios">
         @csrf
