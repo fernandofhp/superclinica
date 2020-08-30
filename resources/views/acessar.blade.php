@@ -2,12 +2,14 @@
 @section('corpo')
 <div class="container m-auto col-6">
     <div class="display-6 text-center">ACESSAR CONTA</div> 
-    <form name="formCadPaciente" id="formCadPaciente" method="post" action="{{url('testagenda')}}">
+    <form name="formCadPaciente" id="formCadPaciente" method="post" action="{{url('agenda')}}">
     @csrf
         <div class="input-group p-1 ">            
             <label for="perfil" class="form-control rotulo col-sm-3 ">PERFIL:</label>
-            <select name="perfil" id="perfil" class="form-control borda">                
-                <option value="PACIENTE">PACIENTE</option><option value="MEDICO">MEDICO</option>
+            <select name="perfil" id="perfil" class="form-control borda" 
+                onchange="document.getElementById('perfil_usr').value = this.value">                
+                <option value="PACIENTE">PACIENTE</option>
+                <option value="MEDICO">MEDICO</option>
            </select>            
         </div>
         <div class="input-group p-1">
@@ -22,11 +24,12 @@
             <button type="submit" class="form-control btn btn-primary borda">ENTRAR</button>                                 
         </div>         
     </form>
-    <form name="formLcadUser" id="formLcadUser" method="get" action="usuarios">
+    <form name="formLcadUser" id="formLcadUser" method="post" action="usuarios">
         @csrf
         <div class="input-group p-1"> 
             <label class="form-control borda">Ainda não tem cadastro? </label>
             <button type="submit" class="form-control btn btn-success borda">Clique aqui: CADASTRAR</button>
+            <input type="hidden" class="" name="perfil" id="perfil_usr" value="PACIENTE">
         </div>
     </form>
 </div> 

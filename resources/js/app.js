@@ -45,15 +45,3 @@ $( function() {
     prevText: 'Anterior'
     });            
 }); 
-
-function buscar(){   
-    try {
-        let dt = document.getgetElementById('hoje').value;
-        doc.getgetElementById('hj').value = dt;
-    } catch (error) {
-        //alert(0);
-    }                        
-    //document.getElementById("formAgenda").action='agenda/busca';
-    
-    document.getElementById("formAgenda").submit();        
-} 

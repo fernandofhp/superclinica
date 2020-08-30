@@ -9,10 +9,15 @@ use App\User;
 
 class controle_usuario extends Controller
 {
-    function index(){
-        return view('cadusuario');
+    function index(Request $request){
+        $perfil = verifica($request->perfil, 'PACIENTE');
+        //return $perfil;
+        return view('cadusuario', compact('perfil'));
     }
-    function acessar(){
+
+    function acessar(Request $request){
+        //$perfil = ($request->perfil);
+        //return $perfil;
         return view('acessar');
     }
 }

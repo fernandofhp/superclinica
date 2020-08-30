@@ -32,11 +32,11 @@ class controle_agenda extends Controller{
         return view('cadagenda');
     }
 
-    public function testagenda(Request $request){ 
+    public function agenda(Request $request){ 
                
         $perfil = $request->perfil;  
         $name = $request->name;
-        $pass = $request->password;               
+        $password = $request->password;               
         $data = $request->data;               
         if ($data) {
             $data = $data;
@@ -44,7 +44,7 @@ class controle_agenda extends Controller{
             $data = '2020-08-25';
         }              
         $usuario = $this->Usuario->where('name', $name)
-                    ->where('password', $pass)->first();
+                    ->where('password', $password)->first();
         if (empty($usuario)) {
             return view('acessar');
         }
@@ -86,6 +86,6 @@ class controle_agenda extends Controller{
         }         
         //return dd($vagendas); // , 'listPacientes', 'listMedicos'
                       
-        return view('testagenda', compact('vagendas', 'perfil', 'nome', 'data'));
+        return view('agenda', compact('vagendas', 'perfil', 'nome', 'data', 'name', 'password'));
     }
 }
