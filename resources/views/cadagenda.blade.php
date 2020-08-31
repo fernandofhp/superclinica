@@ -65,7 +65,7 @@
                     <i class="material-icons">refresh</i>            
                     REDEFINIR                    
                 </button>
-                <button type="button" class="btn btn-danger borda float-right">    
+                <button type="button" class="btn btn-danger borda float-right" onclick="window.history.back();">    
                     <span class="material-icons">cancel</span>            
                     <span class="pt-1">CANCELAR</span>                    
                 </button>

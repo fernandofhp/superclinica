@@ -1,5 +1,10 @@
 @extends('modelo')
 @section('corpo')
+        @if((Session::has('msg')) && !empty(Session::get('msg')))
+            <div class="alert alert-success">
+                {{ Session::get('msg') }}
+            </div>
+        @endif
 <form name="formAgenda" id="formAgenda" action="/agenda/main" method="post">
 @csrf
 <div class="container m-auto col-12" style="color: black !important;">
@@ -18,7 +23,7 @@
     <div class="input-group ">
         <input type="date" name="data" id="data" value="{{$data}}" 
             class="form-control borda" onchange="">
-        <button type="submit" class="btn btn-success form-control borda">Pesquisar</button>
+        <button type="submit" class="btn btn-success form-control borda" id="buscar">Pesquisar</button>
     </div>
     
     <table class="table table-bordered table-striped table-outline-dark min-h-100">
@@ -52,10 +57,21 @@
                         title='EDITAR /ALTERAR AGENDAMENTO'>
                             <i class="material-icons">edit</i>                                                           
                         </button>
+
+                    <script>
+                        function del(id){
+                            //  {{url("/agenda/$value->id/del")}}
+                            document.getElementById('formAgenda').action = "/agenda/"+id+"/del";
+                            document.getElementById('formAgenda').method = "get";
+                            document.getElementById('formAgenda').submit();
+                        }              
+                    </script>
+                    <a href='{{url("agenda/$value->id/del")}}' class='deletao' onclick="">
                         <button type="button" class="btn btn-warning p-1 form-control" 
-                        title='EXCLUIR / CANCELAR AGEDAMENTO'>
+                           title='EXCLUIR / CANCELAR AGEDAMENTO'>
                             <i class="material-icons">delete</i> 
-                        </button>                    
+                        </button> 
+                    </a>                   
                 </td>
             </tr>    
             @php
@@ -73,6 +89,11 @@
     <input type="hidden" name="password" id="password1" value="{{ $password ?? ''}}">    
         
     <div class="class">
+    @if((Session::has('msg')) && !empty(Session::get('msg')))
+        <?php
+            $back = (Session::get('msg') == 1) ? (1) : (0) ;
+        ?>
+    @endif
         <script>
             function vai(){
                 try{
@@ -82,7 +103,32 @@
                 }catch(erro){
                     console.log('erro: ' + erro);
                 }
-            }
+            }  
+            $(".deletao").click(function(){
+                 
+                    var form = getElementById('formAgenda');
+                    var id = $(this).data("id");
+                    alert(id);
+                    var token = $("meta[name='csrf-token']").attr("content");  
+                     if(confirm('Deseja realmente cancelar?')) {                                      
+                            $.ajax({                       
+                                url: "/agenda/"+id+'/del',
+                                type: 'get',
+                                async: false,
+                                data: {
+                                    "id": id,
+                                    "_token": token,
+                                },
+                                success: function (){
+                                    //$('.formAgenda').submit();
+                                    //location.reload();
+                                    form.submit();
+                                }
+                            });
+                        } else {
+                            return false;
+                        }               
+            });
         </script>
             <button type="button" class="btn btn-success m-auto" onclick="vai();">
             <i class="material-icons">create_new_folder</i>

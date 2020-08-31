@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use storage\framework\sessions;
 use Illuminate\Http\Request;
 // modelos das tabelas
 use App\agenda; 
@@ -84,6 +85,7 @@ class controle_agenda extends Controller{
             //$listMedicos = [];
             //$listPacientes = [];
         }     
+        session(['msg' => '']);
         $id_perfil = ($perfil == "MEDICO") ? ($id_medico) : ($id_paciente);   
         //return dd($vagendas); // , 'listPacientes', 'listMedicos'
                       
@@ -157,22 +159,35 @@ class controle_agenda extends Controller{
         if ($perfil == "MEDICO") {
             // obter a liasta de pacientes
             $lista = $this->Pacientes->select('id','nome')->get();
-            $vagendas = $this->agenda_->where('id_medico',$id_medico)->where('data',$data)->get();
+            $vagendas = $this->agenda_->where('id_medico',$id_medico)
+                ->where('data',$data)->orderBy('hora')->get();
             $name = $this->Medicos->where('id', $id_medico)->first()->relUsers->name;
             $password = $this->Medicos->where('id', $id_medico)->first()->relUsers->password;
         }else {
             // obter a liasta de pacientes
             $lista = $this->Medicos->select('id','nome')->get();
-            $vagendas = $this->agenda_->where('id_paciente',$id_paciente)->where('data',$data)->get();
+            $vagendas = $this->agenda_->where('id_paciente',$id_paciente)
+                ->where('data',$data)->orderBy('hora')->get();
             $name = $this->Pacientes->where('id', $id_paciente)->first()->relUsers->name;
             $password = $this->Pacientes->where('id', $id_paciente)->first()->relUsers->password;
         }       
-
+        session(['msg' => 'Agendamento criado!']);
         //return view('cadagenda',             compact('lista','perfil','nome', 'data','hora','datahora','id_perfil','perfil_lista'));
         return view('agenda', compact('vagendas', 'perfil', 'nome', 'data', 'name', 'password', 'id_perfil'));
     }
 
     public function edit(){
                 
+    }
+
+    public function destroy($id){                
+        $del = $this->agenda_->destroy($id); 
+        session(['msg' => 'Agendamento cancelado!']);
+        session(['back' => '1']);
+        return "
+        <script>
+            window.history.back();
+        </script>
+        ";
     }
 }

@@ -45,6 +45,7 @@ Route::get('/', 'controle_usuario@acessar');
 Route::post('/agenda/main', 'controle_agenda@agenda');
 Route::get('/agenda/create', 'controle_agenda@create');
 Route::get('/agenda/{id}/edit', 'controle_agenda@edit');
+Route::get('/agenda/{id}/del', 'controle_agenda@destroy');
 Route::post('/agenda', 'controle_agenda@store');
 //Route::post('/testagenda', 'controle_agenda@index');
 Route::get('/cadagenda', 'controle_agenda@cadagenda');
