@@ -2,7 +2,7 @@
 @section('corpo')
 <div class="container m-auto col-12">
     <div class="display-6 text-center">AGENDAR ATENDIMENTO</div> 
-    <form name="formCadAgenda" id="formCadAgenda" method="post" action="{{url('/agenda/main')}}">
+    <form name="formCadAgenda" id="formCadAgenda" method="post" action="{{url('/agenda')}}">
     @csrf
         <?php 
             //$pefil = isset($pefil) ? ($pefil) : ('');
@@ -48,15 +48,15 @@
         <div class="btn-group p-1 w-100">  
             <script>
                 function copia_tempo(){
-                    doc = document;
-                    datahora = doc.getElementById("datahora");
-                    data = doc.getElementById("data");
-                    hora = doc.getElementById("hora");
+                    var doc = document;
+                    var datahora = doc.getElementById("datahora");
+                    var data = doc.getElementById("data");
+                    var hora = doc.getElementById("hora");
                     datahora.value = data.value + 'T' + hora.value;
-                    //doc.getElementById("datahora").submit();
+                    doc.getElementById("formCadAgenda").submit();
                 }
             </script>               
-                <button type="submit" onclick="copia_tempo();"
+                <button type="button" onclick="copia_tempo();"
                         class="btn btn-success borda">
                     <i class="material-icons">save</i>
                     GRAVAR

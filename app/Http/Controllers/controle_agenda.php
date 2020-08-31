@@ -62,7 +62,7 @@ class controle_agenda extends Controller{
             $id_medico = $this->Medicos->where('id_usuario','=',$id_u)->first()->id; 
             $nome = $this->Medicos->where('id_usuario','=',$id_u)->first()->nome;                            
         
-            //$vagendas = $vagendas->where('id_medico',$id_medico); //
+            $vagendas = $vagendas->where('id_medico',$id_medico); //
             $vagendas = $vagendas->whereData($data)->get();  // 
             //$listPacientes = $vagendas->pacientes; 
             //$listMedicos = [];              
@@ -123,8 +123,10 @@ class controle_agenda extends Controller{
         $id_perfil = $request->id_perfil;      
         $id_lista = $request->id_lista;      
         $datahora = $request->datahora;      
-        $data = $request->data;      
-        $hora = $request->hora;      
+        $data = $request->data; 
+        //return $data;     
+        $hora = $request->hora;
+        //return $hora   ;   
         $tipo = $request->tipo;      
         $obs = $request->obs;
         $nome = $request->nome;
@@ -134,17 +136,20 @@ class controle_agenda extends Controller{
             ($perfil == "MEDICO") ? ($id_perfil) : ($id_lista);
         $id_paciente = 
             ($perfil == "PACIENTE") ? ($id_perfil) : ($id_lista);
-        //return 'ID MED: '.var_dump($id_medico). ' -- ID PACIENTE: ' . var_dump($id_paciente);
+        //return var_dump($id_medico); 
+        //var_dump($id_paciente);
        
         $gravar = $this->agenda_->create([
             'id_medico' => $id_medico,
             'id_paciente' => $id_paciente,
             'datahora' => $datahora,
-            'data' => date('Y-m-d', strtotime($datahora)),
-            'hora' => date('H:i', strtotime($datahora)),
+            'data' => $data,
+            'hora' => $hora,
             'tipo' => $tipo,
             'obs' => $obs
         ]);   
+
+        //return var_dump($gravar);
         
         $perfil_lista = 
             ($perfil == "MEDICO") ? ("PACIENTE") : ("MEDICO");
@@ -152,13 +157,19 @@ class controle_agenda extends Controller{
         if ($perfil == "MEDICO") {
             // obter a liasta de pacientes
             $lista = $this->Pacientes->select('id','nome')->get();
+            $vagendas = $this->agenda_->where('id_medico',$id_medico)->where('data',$data)->get();
+            $name = $this->Medicos->where('id', $id_medico)->first()->relUsers->name;
+            $password = $this->Medicos->where('id', $id_medico)->first()->relUsers->password;
         }else {
             // obter a liasta de pacientes
             $lista = $this->Medicos->select('id','nome')->get();
-        }
+            $vagendas = $this->agenda_->where('id_paciente',$id_paciente)->where('data',$data)->get();
+            $name = $this->Pacientes->where('id', $id_paciente)->first()->relUsers->name;
+            $password = $this->Pacientes->where('id', $id_paciente)->first()->relUsers->password;
+        }       
 
-        return view('cadagenda', compact('lista','perfil','nome',
-        'data','hora','datahora','id_perfil','perfil_lista'));
+        //return view('cadagenda',             compact('lista','perfil','nome', 'data','hora','datahora','id_perfil','perfil_lista'));
+        return view('agenda', compact('vagendas', 'perfil', 'nome', 'data', 'name', 'password', 'id_perfil'));
     }
 
     public function edit(){

@@ -12,6 +12,8 @@ class agenda extends Model
         'id_medico',
         'id_paciente',
         'datahora',
+        'data',
+        'hora',
         'obs',
         'tipo'        
     ];
