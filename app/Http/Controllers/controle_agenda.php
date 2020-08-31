@@ -149,8 +149,7 @@ class controle_agenda extends Controller{
             'hora' => $hora,
             'tipo' => $tipo,
             'obs' => $obs
-        ]);   
-
+        ]);  
         //return var_dump($gravar);
         
         $perfil_lista = 
@@ -176,8 +175,22 @@ class controle_agenda extends Controller{
         return view('agenda', compact('vagendas', 'perfil', 'nome', 'data', 'name', 'password', 'id_perfil'));
     }
 
-    public function edit(){
-                
+    public function edit($id, Request $request){
+        $perfil = $request->perfil;
+        $dados_agenda  = $this->agenda_;
+        $dados_agenda = $dados_agenda->where('id', $id)->first();
+        $medico = $dados_agenda->medicos;
+        $paciente = $dados_agenda->paciente;
+        $id_medico = $medico->id;
+        $nome_medico = $medico->nome;
+        $id_paciente = $paciente->id;
+        $nome_paciente = $paciente->nome;
+        $perfil_lista = 
+            ($perfil == "MEDICO") ? ("PACIENTE") : ("MEDICO");
+        if ($perfil == "MEDICO") {
+            
+        }
+        
     }
 
     public function destroy($id){                

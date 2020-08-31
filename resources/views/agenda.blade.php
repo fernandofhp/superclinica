@@ -53,11 +53,12 @@
                 <td class='m-1 p-1 text-dark'> {{ $value->tipo ?? ''}} </td>
                 <td class='m-1 p-1 text-dark'> {{ $value->obs ?? ''}} </td>
                 <td class='m-1 p-1 text-dark btn-group'>                                           
+                <a href='{{url("agenda/$value->id/edit")}}' class='edt' onclick="">
                         <button type="button" class="btn btn-primary p-1 form-control" 
                         title='EDITAR /ALTERAR AGENDAMENTO'>
                             <i class="material-icons">edit</i>                                                           
                         </button>
-
+                </a>
                     <script>
                         function del(id){
                             //  {{url("/agenda/$value->id/del")}}
