@@ -180,7 +180,10 @@ class controle_agenda extends Controller{
         $dados_agenda  = $this->agenda_;
         $dados_agenda = $dados_agenda->where('id', $id)->first();
         $medico = $dados_agenda->medicos;
-        $paciente = $dados_agenda->paciente;
+        $paciente = $dados_agenda->pacientes;
+        $datahora =$dados_agenda->datahora;
+        $data =$dados_agenda->data;
+        $hora =$dados_agenda->hora;
         $id_medico = $medico->id;
         $nome_medico = $medico->nome;
         $id_paciente = $paciente->id;
@@ -188,9 +191,28 @@ class controle_agenda extends Controller{
         $perfil_lista = 
             ($perfil == "MEDICO") ? ("PACIENTE") : ("MEDICO");
         if ($perfil == "MEDICO") {
-            
+            $lista = $this->Medicos->select('id','nome')->get();
+            // $vagendas = $this->agenda_->where('id_medico',$id_medico)
+            //     ->where('data',$data)->orderBy('hora')->get();
+            $name = $this->Medicos->where('id', $id_medico)->first()->relUsers->name;
+            $password = $this->Medicos->where('id', $id_medico)->first()->relUsers->password;
+            $nome = $nome_medico;
+            $id_perfil = $id_medico;
+            $perfil_lista = "PACIENTE";
+        }else {
+            $lista = $this->Pacientes->select('id','nome')->get();
+            // $vagendas = $this->agenda_->where('id_paciente',$id_paciente)
+            //     ->where('data',$data)->orderBy('hora')->get();
+            $name = $this->Pacientes->where('id', $id_paciente)->first()->relUsers->name;
+            $password = $this->Pacientes->where('id', $id_paciente)->first()->relUsers->password;
+            $nome = $nome_paciente;
+            $id_perfil = $id_medico;
+            $perfil_lista = "MEDICO";
         }
+        session(['msg' => '']);
         
+        return view('cadagenda', compact('lista','perfil','nome',
+        'data','hora','datahora','id_perfil','perfil_lista'));
     }
 
     public function destroy($id){                
