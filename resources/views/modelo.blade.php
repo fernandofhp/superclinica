@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-sm">
                         <a href="/">
-                            <img src="img/clinica.png" alt="" class="src">
+                            <img src="/img/clinica.png" alt="" class="src">
                         </a>
                         </div>
                         <div class="col-sm">

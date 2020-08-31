@@ -2,32 +2,34 @@
 @section('corpo')
 <div class="container m-auto col-12">
     <div class="display-6 text-center">AGENDAR ATENDIMENTO</div> 
-    <form name="formCadAgenda" id="formCadAgenda" method="post" action="{{url('agenda')}}">
+    <form name="formCadAgenda" id="formCadAgenda" method="post" action="{{url('/agenda/main')}}">
     @csrf
         <?php 
-            $pefil = isset($pefil) ? ($pefil) : ('');
+            //$pefil = isset($pefil) ? ($pefil) : ('');
+            $data = isset($data) ? ($data) : date('Y-m-d', time());
+            $hora = isset($hora) ? ($hora) : '08:00';
         ?>        
         <div class="input-group p-1 ">
-            <label for="" class="form-control rotulo  col-3"> {{ $perfil }}:</label>                                         
-            <label for="" class="form-control rotulo ">Nome: </label>                
+            <input class="form-control rotulo  col-3" readonly  value="{{ $perfil ?? '' }}" name="perfil">                                         
+            <input class="form-control rotulo " value="{{ $nome ?? '' }}" name="nome" >                
         </div>
         <div class="input-group p-1">
             <label for="data" class="form-control rotulo  col-3">Data:</label> 
-            <input type="date" class="form-control borda " name="data" id="data">
+            <input type="date" class="form-control borda " name="data" id="data" value="{{ $data }}">
         </div>
         <div class="input-group p-1">
             <label for="hora" class="form-control rotulo  col-3">Hora:</label> 
-            <input type="time" class="form-control borda  col-sm" name="hora"  id="hora">
+            <input type="time" class="form-control borda  col-sm" name="hora"  id="hora" value="{{ $hora }}">
         </div>
-        <input type="hidden" name="datahora" value="datahora"  id="datahora">
+        <input type="hidden" name="datahora" id="datahora" value="{{ $datahora ?? ''}}">
+        <input type="hidden" name="id_perfil" value=" {{ $id_perfil }} "  id="idperf" >
         <div class="input-group p-1">
-            <label for="medico" class="form-control rotulo col-3">Médico:</label> 
-            <select class="form-control borda" name="medico" required="required">
-                <option value="1">Dr Eu</option>
-                <!-- Loop -->
-                <option value="1">Dr Ele</option>
-                <option value="1">Dr Ela</option>
-                <option value="1">Dr Elis</option>
+            <label for="medico" class="form-control rotulo col-3"> {{ $perfil_lista ?? '' }} :</label> 
+            <select class="form-control borda" name="id_lista" required="required">
+              <option value="0"></option>
+               @foreach($lista as $item)
+                <option value=" {{ $item->id ?? 0}} "> {{ $item->nome ?? '' }} </option>
+                @endforeach                
             </select>
         </div>
         <div class="input-group p-1">
@@ -54,7 +56,7 @@
                     //doc.getElementById("datahora").submit();
                 }
             </script>               
-                <button type="button" onclick="copia_tempo();"
+                <button type="submit" onclick="copia_tempo();"
                         class="btn btn-success borda">
                     <i class="material-icons">save</i>
                     GRAVAR

@@ -2,7 +2,7 @@
 @section('corpo')
 <div class="container m-auto col-6">
     <div class="display-6 text-center">ACESSAR CONTA</div> 
-    <form name="formAcessar" id="formAcessar" method="post" action="{{url('agenda')}}">
+    <form name="formAcessar" id="formAcessar" method="post" action="{{url('agenda/main')}}">
     @csrf
         <div class="input-group p-1 ">            
             <label for="perfil" class="form-control rotulo col-sm-3 ">PERFIL:</label>

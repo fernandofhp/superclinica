@@ -42,7 +42,10 @@ Route::get('/usuarios/create', 'controle_usuario@create');
 Route::post('/usuarios', 'controle_usuario@store');
 Route::get('/', 'controle_usuario@acessar');
 // ROTAS DE AGENDA
-Route::post('/agenda', 'controle_agenda@agenda');
+Route::post('/agenda/main', 'controle_agenda@agenda');
+Route::get('/agenda/create', 'controle_agenda@create');
+Route::get('/agenda/{id}/edit', 'controle_agenda@edit');
+Route::post('/agenda', 'controle_agenda@store');
 //Route::post('/testagenda', 'controle_agenda@index');
 Route::get('/cadagenda', 'controle_agenda@cadagenda');
 

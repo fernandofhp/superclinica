@@ -83,13 +83,85 @@ class controle_agenda extends Controller{
             //$listMedicos = $vagenda->medicos;  
             //$listMedicos = [];
             //$listPacientes = [];
-        }         
+        }     
+        $id_perfil = ($perfil == "MEDICO") ? ($id_medico) : ($id_paciente);   
         //return dd($vagendas); // , 'listPacientes', 'listMedicos'
                       
-        return view('agenda', compact('vagendas', 'perfil', 'nome', 'data', 'name', 'password'));
+        return view('agenda', compact('vagendas', 'perfil', 'nome', 'data', 'name', 'password', 'id_perfil'));
     }
 
-    public function create(){
+    public function create(Request $request){                 
+        $perfil = $request->perfil; 
+        $nome = $request->nome;   
+        //return var_dump($request->perfil);                    
+        $data = $request->data; 
+        $hora = $request->hora; 
+        $datahora = $request->datahora; 
+        $id_perfil = $request->id_perfil;
+        $perfil_lista = 
+            ($perfil == "MEDICO") ? ("PACIENTE") : ("MEDICO");
         
+        if ($perfil == "MEDICO") {
+            // obter a liasta de pacientes
+            $lista = $this->Pacientes->select('id','nome')->get();
+        }else {
+            // obter a liasta de pacientes
+            $lista = $this->Medicos->select('id','nome')->get();
+        }
+        /*
+        if (!$lista) {
+            $lista = array(['id' => '', 'nome' => '']);
+        }
+        */
+        //return dd($lista);
+        return view('cadagenda', compact('lista','perfil','nome',
+        'data','hora','datahora','id_perfil','perfil_lista'));
+    }
+
+    public function store(Request $request){
+        $perfil = $request->perfil;      
+        $id_perfil = $request->id_perfil;      
+        $id_lista = $request->id_lista;      
+        $datahora = $request->datahora;      
+        $data = $request->data;      
+        $hora = $request->hora;      
+        $tipo = $request->tipo;      
+        $obs = $request->obs;
+        $nome = $request->nome;
+        
+
+        $id_medico = 
+            ($perfil == "MEDICO") ? ($id_perfil) : ($id_lista);
+        $id_paciente = 
+            ($perfil == "PACIENTE") ? ($id_perfil) : ($id_lista);
+        //return 'ID MED: '.var_dump($id_medico). ' -- ID PACIENTE: ' . var_dump($id_paciente);
+       
+        $gravar = $this->agenda_->create([
+            'id_medico' => $id_medico,
+            'id_paciente' => $id_paciente,
+            'datahora' => $datahora,
+            'data' => date('Y-m-d', strtotime($datahora)),
+            'hora' => date('H:i', strtotime($datahora)),
+            'tipo' => $tipo,
+            'obs' => $obs
+        ]);   
+        
+        $perfil_lista = 
+            ($perfil == "MEDICO") ? ("PACIENTE") : ("MEDICO");
+        
+        if ($perfil == "MEDICO") {
+            // obter a liasta de pacientes
+            $lista = $this->Pacientes->select('id','nome')->get();
+        }else {
+            // obter a liasta de pacientes
+            $lista = $this->Medicos->select('id','nome')->get();
+        }
+
+        return view('cadagenda', compact('lista','perfil','nome',
+        'data','hora','datahora','id_perfil','perfil_lista'));
+    }
+
+    public function edit(){
+                
     }
 }

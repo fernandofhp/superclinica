@@ -1,11 +1,13 @@
 @extends('modelo')
 @section('corpo')
-<form name="formAgenda" if="formAgenda" action="/agenda" method="post">
+<form name="formAgenda" id="formAgenda" action="/agenda/main" method="post">
 @csrf
 <div class="container m-auto col-12" style="color: black !important;">
     <div class="display-6 text-center">AGENDAMENTOS</div>
     <div class='form-component rotulo'>        
-        <B> {{ $perfil ?? '' }}: </B> {{ $nome }}       
+        <B> {{ $perfil ?? '' }}: </B> {{ $nome }} 
+        <input type="hidden" name="nome" id="nome1" value="{{ $nome ?? ''}}">    
+        <input type="hidden" name="perfil" id="perfil1" value="{{ $perfil ?? ''}}">      
     </div>
     <?php
         //$data =   date('Y-m-d',strtotime($data));
@@ -65,16 +67,28 @@
 </div>
 </div>
 
-    <input type="hidden" name="perfil" id="perfil" value="{{ $perfil ?? ''}}">    
-    <input type="hidden" name="name" id="name" value="{{ $name ?? ''}}">    
-    <input type="hidden" name="password" id="password" value="{{ $password ?? ''}}">    
+    <input type="hidden" name="id_perfil" id="id_perfil" value="{{ $id_perfil ?? ''}}">    
+        
+    <input type="hidden" name="name" id="name1" value="{{ $name ?? ''}}">    
+    <input type="hidden" name="password" id="password1" value="{{ $password ?? ''}}">    
         
     <div class="class">
-        <button type="button" class="btn btn-success m-auto">
+        <script>
+            function vai(){
+                try{
+                document.getElementById('formAgenda').action = "/agenda/create";
+                document.getElementById('formAgenda').method = "get";
+                document.getElementById('formAgenda').submit();
+                }catch(erro){
+                    console.log('erro: ' + erro);
+                }
+            }
+        </script>
+            <button type="button" class="btn btn-success m-auto" onclick="vai();">
             <i class="material-icons">create_new_folder</i>
             MARCAR AGENDAMENTO                                    
-        </button> 
-    
+            </button> 
+        
     </div>
     
 </form>
