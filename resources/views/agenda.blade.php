@@ -102,7 +102,7 @@
                 document.getElementById('formAgenda').method = "get";
                 document.getElementById('formAgenda').submit();
                 }catch(erro){
-                    console.log('erro: ' + erro);
+                    console.log('erro: ' + erro); 
                 }
             }  
             $(".deletao").click(function(){

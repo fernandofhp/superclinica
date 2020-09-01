@@ -91,3 +91,36 @@ function del_usuario(event) {
         return false;
     }    
 }
+
+
+
+
+
+
+(function(win, doc){
+    'use strict'
+    //DELETE
+    function confirmDel(event){
+        //alert(event.target.parentNode.href);
+        let token=doc.getElementsByName("_token")[0].value;
+        if(confirm("Deseja mesmo Cancelar Agendamento?")){
+            let ajax = new XMLHttpRequest();
+            ajax.open("DELETE", event.target.parentNode.href);
+            ajax.setRequestHeader('X-CSRF-TOKEN', token);
+            ajax.onreadystatechange=function(){
+                if(ajax.readyDtate === 4 && ajax.status === 200){
+                    alert('Deu certo!');
+                }
+            };    
+            ajax.send();
+        }else{
+            retur false;
+        }
+    }
+    if(doc.querySelector('.js-del')){
+        let bnt = doc.querySelectorAll('.js-del');
+        for (let i=0 = 0; i < btn.length; i++) {
+            btn[i].addEventListener('click'.confirmDel, false)                
+        }
+    }    
+})(window, document);
